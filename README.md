@@ -5,4 +5,4 @@ The individual diffrence between the classes that inherit from Employee is the b
 It's not connected to a database so the information is just collected in a ArrayList.
 The project gives the user posibility to get statistics from the system that uses lamda expressions to sort the list to the user. The lambda expressions are using Comparator interface (much more flexible to use instead of implementation of Comparable interface in the classes). 
 
-The project were made during september - october 2018.
+The project was made during september - october 2018.
