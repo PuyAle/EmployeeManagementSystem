@@ -6,15 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class EmployeeManagement {
-//metod kunde även göras med handleBadInput som kör try / catch med samma meddelande och sc.skip ("*."). 
 
     private static ArrayList<Employee> employerList = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
 
-    //istället för att ha switch med siffror så kan man hårdkoda beskrivning med 
-    //private static final int (t.ex.)OPT_DISPLAY_ALL = 11; och i switchen skriver man OPT_DISPLAY_ALL 
-    //vilket motsvarar 11. för att när man tittar i switchen ska förstå vad den gör. Användaren 
-    //anger fortfarande bara siffra. 
     public static void menuSwitch() {
 
         switch (UserInterface.headMenu()) {
@@ -38,13 +33,8 @@ public class EmployeeManagement {
                 menuSwitch();
                 break;
             case 1:
-                employerList.add(new Worker("Per", "Andersson", 19880513, 34000, "Worker"));
-                employerList.add(new Worker("Jan", "Jansson", 19800223, 33000, "Worker"));
-                employerList.add(new Worker("Sara", "Andersson", 19800303, 32000, "Worker"));
-                employerList.add(new Manager("Kalle", "Johansson", 19850613, 36000, "Manager"));
-                employerList.add(new Manager("Sara", "Johansson", 19820613, 35000, "Manager"));
-                employerList.add(new CEO("Anna", "Gustavsson", 19820403, 20000, "CEO"));
-                // employerList.add(addEmployee());
+
+                employerList.add(addEmployee());
                 menuSwitch();
                 break;
             case 2:
@@ -131,9 +121,6 @@ public class EmployeeManagement {
         System.out.print("\nEnter last name: ");
         String lastName = sc.nextLine();
 
-        //man kan ha att personnr ska läggas in. När man sedan ska räkna ut ålder så kan man köra att 
-        //dateOfBirth är en String som därefter kapas av genom substring för att ta bort 4 sista och 
-        //sedan göra om genom ParsInt för att göra om från string till int. 
         System.out.print("\nEnter date of birth, YYYYMMDD: ");
         int dateOfBirth = sc.nextInt();
 
@@ -181,7 +168,6 @@ public class EmployeeManagement {
             System.out.print("\nEnter the date of birth of the employee you want to delete from the system (if you would like to go back to the main menu just enter 0: ");
             int id = sc.nextInt();
             sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
             boolean hit = false;
             boolean loop2 = true;
             if (id == 0) {
@@ -190,8 +176,6 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
                     hit = true;
                     System.out.println("\nDo you want to delete: " + employerList.get(i).toString() + "?");
                     while (loop2) {
@@ -204,6 +188,7 @@ public class EmployeeManagement {
                                 loop1 = false;
                                 break;
                             case 1:
+
                                 employerList.remove(i);
                                 System.out.println("The employee has been deleted.\n");
                                 System.out.println("Would you like to delete another employe enter 1 else press 0 to go back to main menu.");
@@ -225,11 +210,6 @@ public class EmployeeManagement {
 
                 }
             }
-            /*the bool is set to false outside of the for loop so that if we dont get a hit from the search, after searching in 
-            every index, it will print the text. If we didnt put this if-statment and use a bool, instead had written a else 
-            (if match do this, else write "no employee") it would have written "no employee" after every cheched index. And 
-            even if it would have got a hit in one index it would have written "no employee" after every loop that wasnt a match.
-            If we dont have the "&& id != 0 we will get this message even befor we return to the main menu if 0 is entered.*/
 
             if (hit == false && id != 0) {
                 System.out.println("\nThere is no employee with that date of birth.");
@@ -247,7 +227,6 @@ public class EmployeeManagement {
             System.out.println("\nEnter the date of birth of the employee (if you would like to go back to the main menu just enter 0: ");
             int id = sc.nextInt();
             sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
             boolean hit = false;
             boolean loop2 = true;
             if (id == 0) {
@@ -256,8 +235,6 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
                     hit = true;
                     System.out.println("\nDo you want to change name for: " + employerList.get(i).toString() + " ?");
                     while (loop2) {
@@ -307,11 +284,6 @@ public class EmployeeManagement {
 
                 }
             }
-            /*the bool is set to false outside of the for loop so that if we dont get a hit from the search, after searching in 
-            every index, it will print the text. If we didnt put this if-statment and use a bool, instead had written a else 
-            (if match do this, else write "no employee") it would have written "no employee" after every cheched index. And 
-            even if it would have got a hit in one index it would have written "no employee" after every loop that wasnt a match.
-            If we dont have the "&& id != 0 we will get this message even befor we return to the main menu if 0 is entered.*/
 
             if (hit == false && id != 0) {
                 System.out.println("\nThere is no employee with that date of birth. ");
@@ -345,7 +317,6 @@ public class EmployeeManagement {
                 }
             }
 
-            //creating a bool that is set to false outside of the for loop. 
             boolean hit = false;
             boolean loop2 = true;
 
@@ -355,8 +326,7 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
+
                     hit = true;
                     System.out.println("\nDo you want to change date of birth for " + employerList.get(i).toString() + " ?");
                     while (loop2) {
@@ -402,7 +372,7 @@ public class EmployeeManagement {
             System.out.println("\nEnter the date of birth of the employee (if you would like to go back to the main menu just enter 0: ");
             int id = sc.nextInt();
             sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
+            //creating a bool that is set to false outside of the for loop.
             boolean hit = false;
             boolean loop2 = true;
             if (id == 0) {
@@ -411,8 +381,7 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
+
                     hit = true;
                     System.out.println("\nDo you want to change title of " + employerList.get(i).toString() + " ?");
                     while (loop2) {
@@ -457,15 +426,15 @@ public class EmployeeManagement {
             case "CEO":
                 newTitle = new CEO(employerList.get(i).getFirstName(), employerList.get(i).getLastName(), employerList.get(i).getBirthdate(), employerList.get(i).getSalary(), newTit);
                 break;
-                
+
             case "Manager":
                 newTitle = new Manager(employerList.get(i).getFirstName(), employerList.get(i).getLastName(), employerList.get(i).getBirthdate(), employerList.get(i).getSalary(), newTit);
                 break;
-                
+
             case "Worker":
                 newTitle = new Worker(employerList.get(i).getFirstName(), employerList.get(i).getLastName(), employerList.get(i).getBirthdate(), employerList.get(i).getSalary(), newTit);
                 break;
-                
+
             default:
                 System.out.println("There is no title named: ." + newTitle);
                 System.out.println("Please enter a correct title, for example CEO, Manager or Worker");
@@ -486,7 +455,7 @@ public class EmployeeManagement {
             System.out.println("\nEnter the date of birth of the employee (if you would like to go back to the main menu just enter 0: ");
             int id = sc.nextInt();
             sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
+
             boolean hit = false;
             boolean loop2 = true;
             if (id == 0) {
@@ -495,8 +464,7 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
+
                     hit = true;
                     System.out.println("\nDo you want to change salary for " + employerList.get(i).toString() + " ?");
                     while (loop2) {
@@ -542,7 +510,7 @@ public class EmployeeManagement {
             System.out.println("\nSearch by name!");
             System.out.println("\nEnter the name of the employee (if you would like to go back to the main menu just enter 0: ");
             String id = sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
+            //creating a bool that is set to false outside of the for loop.
             boolean hit = false;
             if (id.equals("0")) {
                 loop1 = false;
@@ -550,8 +518,7 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getFirstName().equals(id)) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
+
                     hit = true;
                     System.out.println(employerList.get(i).toString() + "\n");
                 }
@@ -572,7 +539,7 @@ public class EmployeeManagement {
             System.out.println("\nEnter the date of birth of the employee (if you would like to go back to the main menu just enter 0: ");
             int id = sc.nextInt();
             sc.nextLine();
-            //creating a bool that is set to false outside of the for loop. 
+
             boolean hit = false;
             if (id == 0) {
                 loop1 = false;
@@ -580,8 +547,7 @@ public class EmployeeManagement {
             for (int i = employerList.size() - 1; i >= 0; i--) {
 
                 if (employerList.get(i).getBirthdate() == id) {
-                    //our bool hit is set to true, because the search got a hit in our arraylist,
-                    // so the we change the boolvar value.  
+
                     hit = true;
                     System.out.println(employerList.get(i).toString() + "\n");
                     loop1 = false;
@@ -604,7 +570,6 @@ public class EmployeeManagement {
             System.out.println("\nEnter the title (if you would like to go back to the main menu just enter 0: ");
             String id = sc.nextLine();
             boolean hit = false;
-            //creating a bool that is set to false outside of the for loop. 
             if (id.equals("0")) {
                 loop1 = false;
             }
@@ -629,16 +594,12 @@ public class EmployeeManagement {
         System.out.println("1. Print by name");
         System.out.println("2. Print by age");
         System.out.println("3. Print by title");
+        System.out.println("0. Return");
         int choice = sc.nextInt();
         sc.nextLine();
         switch (choice) {
             case 1:
-                //Överflödigt
 
-//                Comparator<Employee> sortName = (o1, o2) -> o1.getFirstName().compareTo(o2.getFirstName());
-//
-//                employerList.sort(sortName);
-                //Går att förenkla för att sortmetoden förstår att det är comparator som ska overridas.
                 employerList.sort((o1, o2) -> o1.getFirstName().compareTo(o2.getFirstName()));
 
                 employerList.forEach((employee) -> {
@@ -656,6 +617,8 @@ public class EmployeeManagement {
                 employerList.forEach((employee) -> {
                     System.out.println(employee);
                 });
+                break;
+            case 0:
                 break;
             default:
                 System.out.println("\nWrong choice, try again.");
@@ -697,7 +660,6 @@ public class EmployeeManagement {
                         System.out.println("\nEnter the title (if you would like to go back to the main menu just enter 0: ");
                         String id = sc.nextLine();
 
-                        //creating a bool that is set to false outside of the for loop.
                         if (id.equals("0")) {
                             loop1 = false;
                             loop2 = false;
@@ -743,7 +705,6 @@ public class EmployeeManagement {
                         System.out.print("\nEnter the date of birth of the employee (if you would like to go back to the main menu just enter 0: ");
                         int id = sc.nextInt();
                         sc.nextLine();
-                        //creating a bool that is set to false outside of the for loop.
 
                         if (id == 0) {
                             loop1 = false;
@@ -753,8 +714,7 @@ public class EmployeeManagement {
                         for (int i = employerList.size() - 1; i >= 0; i--) {
 
                             if (employerList.get(i).getBirthdate() == id) {
-                                //our bool hit is set to true, because the search got a hit in our arraylist,
-                                // so the we change the boolvar value.
+
                                 hit = true;
                                 System.out.println("\nDo you want to give " + employerList.get(i).toString() + " a bonus? Enter yes or no");
                                 choiceBonus = sc.nextLine();
@@ -814,7 +774,6 @@ public class EmployeeManagement {
                     int count = 0;
                     System.out.print("\nEnter the title: ");
                     String choice2 = sc.nextLine();
-                    //hade gått att ta if (employee instanceof t.ex. choice2) därefter sum2+=en metod som tar getSalary.
                     for (int i = 0; i < employerList.size(); i++) {
                         if (employerList.get(i).getTitle().equals(choice2)) {
                             sum2 += employerList.get(i).getSalary();
@@ -846,26 +805,10 @@ public class EmployeeManagement {
                 case 0:
                     loop1 = false;
                     break;
-                case 1:/*
-                    Employee temp;
-                    for (int i = 0; i < employerList.size(); i++) {
-                        for (int j = 1; j < employerList.size() - i; j++) {
-                            if (employerList.get(j).getSalary() > employerList.get(j - 1).getSalary()) {
-                                temp = employerList.get(j);
-                                employerList.set(j, employerList.get(j - 1));
-                                employerList.set(j - 1, temp);
-
-                            }
-                        }
-                    }
-                    System.out.println("\nHighest salary at the company: " + employerList.get(0));*/
-                    
-                    //easier to do it this way. 
-                    employerList.sort((o1, o2) -> o2.getSalary()-o1.getSalary());
+                case 1:
+                    employerList.sort((o1, o2) -> o2.getSalary() - o1.getSalary());
                     System.out.println("\nHighest salary at the company: " + employerList.get(0));
-                    
-                            
-                            
+
                     loop1 = false;
                     break;
                 default:
